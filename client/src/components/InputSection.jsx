@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CanvasDrawing from './CanvasDrawing'
 import ImageUpload from './ImageUpload'
 import DescriptionInput from './DescriptionInput'
+import ComponentModeSelector from './ComponentModeSelector'
 import { Sparkles } from 'lucide-react'
 
 const InputSection = ({
@@ -9,6 +10,8 @@ const InputSection = ({
   onImageUpload,
   description,
   onDescriptionChange,
+  componentMode,
+  onComponentModeChange,
   onGenerate,
   isGenerating,
   uploadedImage
@@ -58,6 +61,13 @@ const InputSection = ({
             uploadedImage={uploadedImage}
           />
         )}
+      </div>
+
+      <div className="card">
+        <ComponentModeSelector
+          componentMode={componentMode}
+          onComponentModeChange={onComponentModeChange}
+        />
       </div>
 
       <div className="card">

@@ -32,33 +32,57 @@ function extractJsonObject(text) {
   return null
 }
 
-export async function generateHTMLCSS(imageData, description) {
+function buildPrompt(description, componentMode) {
+  const componentInstructions = {
+    'full-page': 'Generate a complete page layout based on the sketch.',
+    button: 'Generate ONLY a button component (not a full page).',
+    card: 'Generate ONLY a card component (not a full page).',
+    form: 'Generate ONLY a form component (not a full page).'
+  }
+
+  const instruction = componentInstructions[componentMode] || componentInstructions['full-page']
+
+  return `You are an expert frontend developer.
+
+Task:
+Analyze the provided UI sketch/wireframe and convert it into code.
+
+User description:
+${description}
+
+Component export mode: ${componentMode}
+${instruction}
+
+Output requirements (STRICT):
+1. HTML must be semantic and accessible.
+2. CSS must be plain CSS (no Tailwind, no Bootstrap, no frameworks).
+3. Use modern responsive CSS (Flexbox/Grid). Mobile-first.
+4. Do NOT include code fences or markdown.
+5. HTML output must be BODY CONTENT ONLY (no <!DOCTYPE>, no <html>, no <head>, no <body> tags).
+6. React output must be a clean React functional component that returns JSX only (no document tags).
+7. React should use a CSS Module named \"GeneratedComponent.module.css\" and import it as \"styles\".
+
+Return ONLY the following JSON object:
+{
+  \"html\": \"...\",
+  \"css\": \"...\",
+  \"reactComponent\": \"...\",
+  \"reactCss\": \"...\"
+}
+
+Notes:
+- \"reactComponent\" must export default function GeneratedComponent() { ... }
+- \"reactCss\" must be the CSS module content.
+- The HTML/CSS and React/CSS-module should visually match.`
+}
+
+export async function generateHTMLCSS(imageData, description, componentMode = 'full-page') {
   try {
     if (!OPENROUTER_API_KEY) {
       throw new Error('Missing OPENROUTER_API_KEY in server environment')
     }
 
-    const prompt = `You are an expert frontend developer. Analyze this UI sketch/wireframe and convert it into clean, modern HTML and CSS code.
-
-User's Description: ${description}
-
-Requirements:
-1. Generate semantic, accessible HTML5 code
-2. Create modern, responsive CSS (use Flexbox/Grid where appropriate)
-3. Use the design details from the description (colors, fonts, layout, etc.)
-4. Make the design mobile-first and responsive
-5. Include appropriate spacing, padding, and margins
-6. Use modern CSS practices (CSS variables, smooth transitions)
-7. Ensure the code is clean, well-structured, and commented where helpful
-8. If the sketch shows specific UI components (buttons, cards, forms), implement them accurately
-
-Return your response in the following JSON format:
-{
-  "html": "<!-- Your HTML code here -->",
-  "css": "/* Your CSS code here */"
-}
-
-IMPORTANT: Return ONLY the JSON object, no additional text or markdown formatting.`
+    const prompt = buildPrompt(description, componentMode)
 
     const headers = {
       Authorization: `Bearer ${OPENROUTER_API_KEY}`,
@@ -122,7 +146,9 @@ IMPORTANT: Return ONLY the JSON object, no additional text or markdown formattin
 
     return {
       html: generatedCode.html.trim(),
-      css: generatedCode.css.trim()
+      css: generatedCode.css.trim(),
+      reactComponent: (generatedCode.reactComponent || '').trim(),
+      reactCss: (generatedCode.reactCss || '').trim()
     }
   } catch (error) {
     console.error('OpenRouter API Error:', error)
