@@ -11,7 +11,7 @@ npm run install:all
 
 ### 2. Configuration
 
-Create a `.env` file in the `server` directory with your Google AI Studio API key:
+Create a `.env` file in the `server` directory with your OpenRouter API key:
 
 ```bash
 cd server
@@ -21,17 +21,18 @@ cp .env.example .env
 Edit the `.env` file and add your API key:
 
 ```
-GEMINI_API_KEY=your_actual_api_key_here
+OPENROUTER_API_KEY=your_actual_api_key_here
 PORT=3001
 ```
 
-#### How to Get Your Google AI Studio API Key
+#### How to Get Your OpenRouter API Key
 
-1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Sign in with your Google account
-3. Click "Create API Key"
+1. Visit [OpenRouter](https://openrouter.ai/keys)
+2. Sign in with your account (or create a new one)
+3. Click "Create Key" or "New API Key"
 4. Copy the API key
 5. Paste it into your `.env` file
+6. (Optional) Set a custom model by adding: `OPENROUTER_MODEL=openai/gpt-4o-mini`
 
 ### 3. Running the Application
 
@@ -224,6 +225,6 @@ The AI generates clean, modern code that you can easily modify:
 For issues, questions, or feature requests, please check:
 - The README.md file for setup instructions
 - The code comments for implementation details
-- Google AI Studio documentation for API limits and usage
+- OpenRouter documentation for API limits, models, and usage
 
 Enjoy building with Sketch2Code AI! 🚀

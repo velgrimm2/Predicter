@@ -44,7 +44,7 @@
 - User guidance for optimal AI results
 
 ### 4. AI Code Generation
-**Technology**: Google AI Studio (Gemini API)
+**Technology**: OpenRouter API
 
 **Features**:
 - ✅ Converts sketches + descriptions to HTML/CSS
@@ -55,7 +55,7 @@
 - ✅ Clean, well-structured code output
 
 **Implementation**: 
-- Backend: `server/src/services/gemini.js`
+- Backend: `server/src/services/openrouter.js`
 - API Route: `server/src/routes/generative.js`
 - Prompt engineering for consistent output format
 - JSON response parsing with fallbacks
@@ -156,7 +156,7 @@ React App (Vite)
 ```
 Express Server
 ├── Routes: /api/generate
-├── Services: Gemini AI integration
+├── Services: OpenRouter integration
 ├── Middleware: CORS, body-parser
 └── Environment: dotenv
 ```
@@ -171,7 +171,7 @@ Express Server
    ↓
 4. API Request to /api/generate
    ↓
-5. Gemini AI Processing
+5. OpenRouter AI Processing
    ↓
 6. JSON Response (HTML + CSS)
    ↓
@@ -227,9 +227,9 @@ Express Server
 - **Rate Limiting**: Could add rate limiting middleware
 
 ### AI API
-- **Model**: Using Gemini 1.5 Flash for speed
+- **Model**: Configurable via `OPENROUTER_MODEL` (default: `openai/gpt-4o-mini`)
 - **Response Time**: Typically 5-15 seconds
-- **Token Limits**: Handled by Gemini API
+- **Token Limits**: Handled by the selected OpenRouter model
 
 ## Security Features
 
@@ -290,7 +290,7 @@ Express Server
 
 1. **AI Output Variability**: Results depend on sketch clarity and description quality
 2. **Large Bundles**: Fabric.js and Prism.js increase bundle size
-3. **API Key Required**: Users must provide their own Gemini API key
+3. **API Key Required**: Users must provide their own OpenRouter API key
 4. **Single Page Output**: Currently generates single-page designs only
 5. **No Asset Management**: Doesn't handle images in generated code (yet)
 
@@ -307,7 +307,6 @@ Express Server
 - `express`: Web framework
 - `cors`: CORS middleware
 - `dotenv`: Environment variables
-- `@google/generative-ai`: Gemini API client
 
 ### Development Dependencies
 - `vite`: Build tool
@@ -317,9 +316,9 @@ Express Server
 
 ## Maintenance Notes
 
-- **API Key Management**: Users must obtain and configure their own Gemini API key
+- **API Key Management**: Users must obtain and configure their own OpenRouter API key
 - **Dependency Updates**: Regular updates recommended for security
-- **API Changes**: Monitor Google AI Studio for API changes
+- **API Changes**: Monitor OpenRouter for API changes and model availability
 - **Browser Updates**: Test with new browser versions
 
 ---

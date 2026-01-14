@@ -1,5 +1,5 @@
 import express from 'express'
-import { generateHTMLCSS } from '../services/gemini.js'
+import { generateHTMLCSS } from '../services/openrouter.js'
 
 const router = express.Router()
 
