@@ -8,13 +8,12 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js"
   },
-  "keywords": ["express", "gemini", "ai"],
+  "keywords": ["express", "openrouter", "ai"],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "@google/generative-ai": "^0.2.1"
+    "express": "^4.18.2"
   }
 }

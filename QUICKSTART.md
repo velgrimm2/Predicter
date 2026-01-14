@@ -5,7 +5,7 @@ Get Sketch2Code AI running in 3 minutes!
 ## Prerequisites
 
 - Node.js 18+ installed
-- Google AI Studio API key ([Get one here](https://makersuite.google.com/app/apikey))
+- OpenRouter API key ([Get one here](https://openrouter.ai/keys))
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm run install:all
 # 2. Configure API key
 cd server
 cp .env.example .env
-# Edit .env and add your GEMINI_API_KEY
+# Edit .env and add your OPENROUTER_API_KEY
 
 # 3. Start the app
 cd ..
@@ -50,7 +50,7 @@ Open your browser to: **http://localhost:5173**
 ### API Key Error
 Make sure you've:
 - Created a `.env` file in the `server` folder
-- Added `GEMINI_API_KEY=your_actual_key`
+- Added `OPENROUTER_API_KEY=your_actual_key`
 - Restarted the server
 
 ### Port Already in Use

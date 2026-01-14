@@ -9,7 +9,13 @@ function App() {
   const [canvasData, setCanvasData] = useState(null)
   const [uploadedImage, setUploadedImage] = useState(null)
   const [description, setDescription] = useState('')
-  const [generatedCode, setGeneratedCode] = useState({ html: '', css: '' })
+  const [componentMode, setComponentMode] = useState('full-page')
+  const [generatedCode, setGeneratedCode] = useState({
+    html: '',
+    css: '',
+    reactComponent: '',
+    reactCss: ''
+  })
   const [isGenerating, setIsGenerating] = useState(false)
   const [notification, setNotification] = useState(null)
 
@@ -32,13 +38,15 @@ function App() {
     setIsGenerating(true)
     try {
       const imageData = uploadedImage || canvasData
-      const result = await generateCode(imageData, description)
-      
+      const result = await generateCode(imageData, description, componentMode)
+
       setGeneratedCode({
-        html: result.html,
-        css: result.css
+        html: result.html || '',
+        css: result.css || '',
+        reactComponent: result.reactComponent || '',
+        reactCss: result.reactCss || ''
       })
-      
+
       showNotification('Code generated successfully!', 'success')
     } catch (error) {
       console.error('Generation error:', error)
@@ -54,7 +62,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Header />
-      
+
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-8">
           <InputSection
@@ -62,14 +70,18 @@ function App() {
             onImageUpload={setUploadedImage}
             description={description}
             onDescriptionChange={setDescription}
+            componentMode={componentMode}
+            onComponentModeChange={setComponentMode}
             onGenerate={handleGenerate}
             isGenerating={isGenerating}
             uploadedImage={uploadedImage}
           />
-          
+
           <OutputSection
             html={generatedCode.html}
             css={generatedCode.css}
+            reactComponent={generatedCode.reactComponent}
+            reactCss={generatedCode.reactCss}
             onNotification={showNotification}
           />
         </div>

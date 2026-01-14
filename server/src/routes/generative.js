@@ -1,11 +1,11 @@
 import express from 'express'
-import { generateHTMLCSS } from '../services/gemini.js'
+import { generateHTMLCSS } from '../services/openrouter.js'
 
 const router = express.Router()
 
 router.post('/generate', async (req, res) => {
   try {
-    const { image, description } = req.body
+    const { image, description, componentMode } = req.body
 
     if (!image) {
       return res.status(400).json({ error: 'Image data is required' })
@@ -15,7 +15,7 @@ router.post('/generate', async (req, res) => {
       return res.status(400).json({ error: 'Description is required' })
     }
 
-    const result = await generateHTMLCSS(image, description)
+    const result = await generateHTMLCSS(image, description, componentMode || 'full-page')
 
     res.json(result)
   } catch (error) {

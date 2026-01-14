@@ -6,7 +6,7 @@ Thank you for your interest in contributing to Sketch2Code AI! This document pro
 
 1. Fork and clone the repository
 2. Install dependencies: `npm run install:all`
-3. Create a `.env` file in the `server` directory with your Google AI Studio API key
+3. Create a `.env` file in the `server` directory with your OpenRouter API key
 4. Start development: `npm run dev`
 
 ## Project Structure
@@ -39,7 +39,7 @@ sketch2code-ai/
 │   │   ├── routes/       # API routes
 │   │   │   └── generative.js
 │   │   ├── services/     # Business logic
-│   │   │   └── gemini.js
+│   │   │   └── openrouter.js
 │   │   └── server.js     # Express app
 │   ├── .env.example
 │   └── package.json
@@ -168,7 +168,7 @@ Here are some features you could contribute:
 ### Nice to Have
 - [ ] Collaborative editing
 - [ ] User accounts and cloud storage
-- [ ] AI model selection (different Gemini models)
+- [ ] AI model selection (different OpenRouter models)
 - [ ] Custom color palette picker
 - [ ] Font pairing suggestions
 - [ ] Accessibility checker for generated code

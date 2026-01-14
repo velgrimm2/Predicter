@@ -1,12 +1,12 @@
 # Sketch2Code AI
 
-Convert UI sketches into HTML/CSS code using Google AI Studio (Gemini API).
+Convert UI sketches into HTML/CSS code using OpenRouter AI.
 
 ## Features
 
 - **Canvas Drawing**: Draw UI sketches with pen, eraser, shapes (rectangle, circle), and text tools
 - **Image Upload**: Upload existing UI sketches (JPG, PNG, WebP) with drag & drop support
-- **AI-Powered Generation**: Convert sketches to clean, modern HTML/CSS using Google Gemini
+- **AI-Powered Generation**: Convert sketches to clean, modern HTML/CSS using OpenRouter
 - **Live Preview**: See your generated code rendered in real-time
 - **Syntax Highlighting**: View HTML and CSS code with syntax highlighting
 - **Responsive Design**: Preview and generate responsive designs
@@ -16,7 +16,7 @@ Convert UI sketches into HTML/CSS code using Google AI Studio (Gemini API).
 
 - **Frontend**: React, Vite, Tailwind CSS, Fabric.js, Prism.js
 - **Backend**: Node.js, Express
-- **AI**: Google AI Studio (Gemini API)
+- **AI**: OpenRouter API
 
 ## Setup
 
@@ -28,16 +28,20 @@ Convert UI sketches into HTML/CSS code using Google AI Studio (Gemini API).
 
 3. Set up environment variables:
    - Create a `.env` file in the `server` directory
-   - Add your Google AI Studio API key:
+   - Add your OpenRouter API key:
      ```
-     GEMINI_API_KEY=your_api_key_here
+     OPENROUTER_API_KEY=your_api_key_here
      PORT=3001
      ```
 
-4. Get your Google AI Studio API key:
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Create a new API key
+4. Get your OpenRouter API key:
+   - Visit [OpenRouter](https://openrouter.ai/keys)
+   - Sign in and create a new API key
    - Copy it to your `.env` file
+   - Optionally, set a custom model in `.env` (default: `openai/gpt-4o-mini`):
+     ```
+     OPENROUTER_MODEL=openai/gpt-4o-mini
+     ```
 
 ## Development
 

@@ -3,6 +3,8 @@ import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-css'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-jsx'
 import { Copy, Check } from 'lucide-react'
 
 const CodeTab = ({ code, language, onNotification }) => {
